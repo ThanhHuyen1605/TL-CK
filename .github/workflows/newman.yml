@@ -1,0 +1,44 @@
+name: Run Postman Tests with Newman
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  newman_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: |
+          npm install -g newman
+          npm install -g newman-reporter-html
+
+      - name: Test User Function
+        run: newman run ./Collections/Auth.postman_collection.json -e ./ShoesstoreEnv.postman_environment.json --reporters html --reporter-html-export ./report/report.html
+
+      - name: Upload HTML report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: postman-report
+          path: ./report/report.html
+
+      - name: Upload HTML Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./report
+          publish_branch: gh-pages
+          commit_message: "Deploy Postman Report"
+          github_token: ${{ secrets.GH_TOKEN }}

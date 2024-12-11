@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "e9a5fe26-4df7-4064-b25e-8c9205e887c7",
+		"name": "Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30499685"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.code === 200){\r",
+							"    pm.test(\"Status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"    pm.test(\"Dang ky thanh cong\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    const data = pm.response.json();\r",
+							"    const emailEnv = data.CreateUser.email;\r",
+							"    const passEnv = data.CreateUser.password;\r",
+							"\r",
+							"    pm.environment.set(\"emailEnv\", emailEnv);\r",
+							"    pm.environment.set(\"passEnv\", passEnv);\r",
+							"});\r",
+							"}\r",
+							"\r",
+							"if(pm.response.code === 400){\r",
+							"    const data = pm.response.json();\r",
+							"\r",
+							"    pm.test(\"Status code is 400\", function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });\r",
+							"\r",
+							"    if(data.msg === \"Email already exists\"){\r",
+							"        pm.test(\"Email da ton tai\", function () {\r",
+							"            pm.response.to.have.status(400);\r",
+							"        }); \r",
+							"    } else if(data.mes === \"E11000 duplicate key error collection: test.users index: username_1 dup key: { username: \\\"Thanh Huyen\\\" }\"){\r",
+							"        pm.test(\"Ten da duoc su dung\", function () {\r",
+							"            pm.response.to.have.status(400);\r",
+							"        });\r",
+							"    } else if(data.errors[0].msg === \"Username must be at least 6 characters long\" && data.errors.length === 1){\r",
+							"        pm.test(\"Ten khong hop le\", function () {\r",
+							"            pm.response.to.have.status(400);\r",
+							"        });\r",
+							"    }\r",
+							"    else if(data.errors[0].msg === \"Invalid email\" && data.errors.length === 1){\r",
+							"        pm.test(\"Email khong hop le\", function () {\r",
+							"            pm.response.to.have.status(400);\r",
+							"        });\r",
+							"    } else if(data.errors[0].msg === \"Password must be at least 6 characters long\" && data.errors.length === 1){\r",
+							"        pm.test(\"Password khong hop le\", function () {\r",
+							"            pm.response.to.have.status(400);\r",
+							"        });\r",
+							"    } else if(data.errors[0].msg === \"Invalid email\" && data.errors[1].msg === \"Password must be at least 6 characters long\"){\r",
+							"        pm.test(\"Email & Password khong hop le\", function () {\r",
+							"            pm.response.to.have.status(400);\r",
+							"        });\r",
+							"    }\r",
+							"\r",
+							"    pm.environment.set(\"emailEnv\", \"\");\r",
+							"    pm.environment.set(\"passEnv\", \"\");  \r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Thanh Huyen\",\r\n    \"phoneNumber\": \"012554424\",\r\n    \"email\": \"huyen@gmail.com\",\r\n    \"password\": \"123466\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://shoesstore-backend-production.up.railway.app/user/registerTest",
+					"protocol": "https",
+					"host": [
+						"shoesstore-backend-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"user",
+						"registerTest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.code === 200){\r",
+							"    pm.test(\"Status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"    pm.test(\"Dang nhap thanh cong\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"}\r",
+							"if(pm.response.code === 401){\r",
+							"    pm.test(\"Status code is 401\", function () {\r",
+							"        pm.response.to.have.status(401);\r",
+							"    });\r",
+							"    const data = pm.response.json();\r",
+							"    if(data.message === \"Email hoặc password không đúng!\"){\r",
+							"        pm.test(\"Email hoặc password không dung!\", function () {\r",
+							"            pm.response.to.have.status(401);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							"if(pm.response.code === 400){\r",
+							"    pm.test(\"Status code is 400\", function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });\r",
+							"    const data = pm.response.json();\r",
+							"    if(data.errors[0].msg === \"Invalid email\" && data.errors.length === 1){\r",
+							"        pm.test(\"Email không hop le!\", function () {\r",
+							"            pm.response.to.have.status(400);\r",
+							"        });\r",
+							"    }\r",
+							"    else if(data.errors.length > 1){\r",
+							"        pm.test(\"Vui long nhap email va password!\", function () {\r",
+							"            pm.response.to.have.status(400);\r",
+							"        });\r",
+							"    }\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"{{emailEnv}}\",\r\n    \"password\": \"{{passEnv}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://shoesstore-backend-production.up.railway.app/user/loginTest",
+					"protocol": "https",
+					"host": [
+						"shoesstore-backend-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"user",
+						"loginTest"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
