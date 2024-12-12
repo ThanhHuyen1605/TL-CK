@@ -82,7 +82,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"Chu Huyen\",\r\n    \"phoneNumber\": \"012554424\",\r\n    \"email\": \"huyen123@gmail.com\",\r\n    \"password\": \"123466\"\r\n}",
+					"raw": "{\r\n    \"username\": \"t Huyen\",\r\n    \"phoneNumber\": \"012554465\",\r\n    \"email\": \"huyen1234@gmail.com\",\r\n    \"password\": \"1234666\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
