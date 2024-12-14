@@ -26,14 +26,17 @@ jobs:
           npm install -g newman
           npm install -g newman-reporter-html
 
-      - name: Test User Function
-        run: newman run ./Collections/Auth.postman_collection.json -e ./ShoesstoreEnv.postman_environment.json --reporters html --reporter-html-export ./report/report.html
+      - name: Test Authencation
+        run: newman run ./Collections/Auth.postman_collection.json -e ./ShoesstoreEnv.postman_environment.json --reporters html --reporter-html-export ./report/Auth_report.html
+
+      - name: Test User Profile
+        run: newman run ./Collections/UserProfile.postman_collection.json -e ./ShoesstoreEnv.postman_environment.json --reporters html --reporter-html-export ./report/UserProfile_report.html
 
       - name: Upload HTML report as artifact
         uses: actions/upload-artifact@v3
         with:
           name: postman-report
-          path: ./report/report.html
+          path: ./reports
 
       - name: Upload HTML Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
