@@ -82,7 +82,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"t Huyen\",\r\n    \"phoneNumber\": \"012554465\",\r\n    \"email\": \"huyen1234@gmail.com\",\r\n    \"password\": \"1234666\"\r\n}",
+					"raw": "{\r\n    \"username\": \"Chu Huyen\",\r\n    \"phoneNumber\": \"012554424\",\r\n    \"email\": \"huyen123@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -119,6 +119,14 @@
 							"    });\r",
 							"    pm.test(\"Dang nhap thanh cong\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"\r",
+							"    const data = pm.response.json();\r",
+							"    const refreshToken = data.user.refresh_token;\r",
+							"    pm.environment.set(\"refreshToken\", refreshToken);\r",
+							"\r",
+							"    const accessToken = data.accessToken;\r",
+							"    pm.environment.set(\"accessToken\", accessToken);\r",
+							"\r",
 							"});\r",
 							"}\r",
 							"if(pm.response.code === 401){\r",
@@ -147,6 +155,8 @@
 							"            pm.response.to.have.status(400);\r",
 							"        });\r",
 							"    }\r",
+							"\r",
+							"\r",
 							"}"
 						],
 						"type": "text/javascript",
@@ -178,6 +188,63 @@
 					"path": [
 						"user",
 						"loginTest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.code === 200){\r",
+							"    pm.test(\"Status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"    pm.test(\"Dang xuat thanh cong\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refreshToken\": \"{{refreshToken}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://shoesstore-backend-production.up.railway.app/user/logout",
+					"protocol": "https",
+					"host": [
+						"shoesstore-backend-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"user",
+						"logout"
 					]
 				}
 			},

@@ -20,12 +20,12 @@
 							"    pm.test(\"Dang nhap thanh cong\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"\r",
-							"    // const data = pm.response.json();\r",
-							"    // const accessToken_Update = data.accessToken;\r",
-							"    // pm.environment.set(\"accessToken_Update\", accessToken_Update);\r",
+							"    const data = pm.response.json();\r",
+							"    const accessToken_Cart = data.accessToken;\r",
+							"    pm.environment.set(\"accessToken_Cart\", accessToken_Cart);\r",
 							"\r",
-							"    // const userId = data.user._id;\r",
-							"    // pm.environment.set(\"userId\", userId)\r",
+							"    const userId_Cart = data.user._id;\r",
+							"    pm.environment.set(\"userId_Cart\", userId_Cart)\r",
 							"});\r",
 							"}\r",
 							"if(pm.response.code === 401){\r",
@@ -68,7 +68,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"huyen@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+					"raw": "{\r\n    \"email\": \"huyen@gmail.com\",\r\n    \"password\": \"123456huyen\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -87,6 +87,134 @@
 					"path": [
 						"user",
 						"loginTest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddCart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.code === 200){\r",
+							"    const data = pm.response.json();\r",
+							"    if (data.Cart._id){\r",
+							"        pm.test(\"Status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"        });\r",
+							"        pm.test(\"Them san pham vao gio hang thanh cong\", function () {\r",
+							"            pm.response.to.have.status(200);\r",
+							"        });\r",
+							"    } \r",
+							"    else{\r",
+							"        pm.test(\"San pham da ton tai trong gio hang\", function () {\r",
+							"            pm.response.to.have.status(200);\r",
+							"        });\r",
+							"    }\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken_Cart}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pid\": \"6586d18d5deceb560bdc412d\",\r\n    \"size\": 39,\r\n    \"price\": \"2390000\",\r\n    \"img\": \"https://res.cloudinary.com/dk6lpssqj/image/upload/v1703334312/shoes/gidi4eh1yxh07uo1fexx.jpg\",\r\n    \"name\": \"GIÀY ADIDAS SUPERSTAR NAM - XANH VÀNG\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://shoesstore-backend-production.up.railway.app/user/Cart",
+					"protocol": "https",
+					"host": [
+						"shoesstore-backend-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"user",
+						"Cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteCart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.code === 200){\r",
+							"    pm.test(\"Status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"    pm.test(\"Da xoa san pham ra khoi gio hang\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });                \r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken_Cart}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://shoesstore-backend-production.up.railway.app/user/Cart",
+					"protocol": "https",
+					"host": [
+						"shoesstore-backend-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"user",
+						"Cart"
 					]
 				}
 			},
