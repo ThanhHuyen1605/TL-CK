@@ -284,7 +284,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"password\": \"12345678\"\r\n}",
+					"raw": "{\r\n    \"password\": \"123qwe\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

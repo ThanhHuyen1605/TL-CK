@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "5f78aca7-49bb-4ca7-ac84-a2e499858976",
+		"name": "Cart",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30499685"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.code === 200){\r",
+							"    pm.test(\"Status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"    pm.test(\"Dang nhap thanh cong\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"\r",
+							"    // const data = pm.response.json();\r",
+							"    // const accessToken_Update = data.accessToken;\r",
+							"    // pm.environment.set(\"accessToken_Update\", accessToken_Update);\r",
+							"\r",
+							"    // const userId = data.user._id;\r",
+							"    // pm.environment.set(\"userId\", userId)\r",
+							"});\r",
+							"}\r",
+							"if(pm.response.code === 401){\r",
+							"    pm.test(\"Status code is 401\", function () {\r",
+							"        pm.response.to.have.status(401);\r",
+							"    });\r",
+							"    const data = pm.response.json();\r",
+							"    if(data.message === \"Email hoặc password không đúng!\"){\r",
+							"        pm.test(\"Email hoặc password không dung!\", function () {\r",
+							"            pm.response.to.have.status(401);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							"if(pm.response.code === 400){\r",
+							"    pm.test(\"Status code is 400\", function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });\r",
+							"    const data = pm.response.json();\r",
+							"    if(data.errors[0].msg === \"Invalid email\" && data.errors.length === 1){\r",
+							"        pm.test(\"Email không hop le!\", function () {\r",
+							"            pm.response.to.have.status(400);\r",
+							"        });\r",
+							"    }\r",
+							"    else if(data.errors.length > 1){\r",
+							"        pm.test(\"Vui long nhap email va password!\", function () {\r",
+							"            pm.response.to.have.status(400);\r",
+							"        });\r",
+							"    }\r",
+							"\r",
+							"\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"huyen@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://shoesstore-backend-production.up.railway.app/user/loginTest",
+					"protocol": "https",
+					"host": [
+						"shoesstore-backend-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"user",
+						"loginTest"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
