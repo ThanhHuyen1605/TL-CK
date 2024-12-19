@@ -34,7 +34,10 @@ jobs:
 
       - name: Test Cart
         run: newman run ./Collections/Cart.postman_collection.json -e ./ShoesstoreEnv.postman_environment.json --reporters html --reporter-html-export ./report/Cart_report.html
-
+     
+      - name: Test Product
+        run: newman run ./Collections/Product.postman_collection.json -e ./ShoesstoreEnv.postman_environment.json --reporters html --reporter-html-export ./report/Product_report.html
+      
       - name: Upload HTML report as artifact
         uses: actions/upload-artifact@v3
         with:
