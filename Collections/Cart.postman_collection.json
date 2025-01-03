@@ -136,7 +136,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"pid\": \"6586d18d5deceb560bdc412d\",\r\n    \"size\": 39,\r\n    \"price\": \"2390000\",\r\n    \"img\": \"https://res.cloudinary.com/dk6lpssqj/image/upload/v1703334312/shoes/gidi4eh1yxh07uo1fexx.jpg\",\r\n    \"name\": \"GIÀY ADIDAS SUPERSTAR NAM - XANH VÀNG\"\r\n}",
+					"raw": "{\r\n    \"pid\": \"6586d18d5deceb560bdc412d\",\r\n    \"size\": 39,\r\n    \"price\": \"2390000\",\r\n    \"img\": \"https://res.cloudinary.com/dk6lpssqj/image/upload/v1703334312/shoes/gidi4eh1yxh07uo1fexx.jpg\",\r\n    \"name\": \"GIÀY ADIDASS SUPERSTAR NAM - XANH VÀNG\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

@@ -132,7 +132,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"productName\": \"Giày thể thao Nike Air Max\",\r\n  \"description\": \"Giày thể thao Nike Air Max cực kỳ thoải mái và phong cách, phù hợp cho mọi hoạt động thể thao.\",\r\n  \"price\": 2500000,\r\n  \"brand\": \"67642cf03b4bbab31d792a36\",  \r\n  \"quantity\": [\r\n    {\r\n      \"size\": 36,\r\n      \"numberOfSize\": 50\r\n    },\r\n\r\n    {\r\n      \"size\": 37,\r\n      \"numberOfSize\": 50\r\n    },\r\n\r\n    {\r\n      \"size\": 38,\r\n      \"numberOfSize\": 50\r\n    },\r\n    {\r\n      \"size\": 39,\r\n      \"numberOfSize\": 50\r\n    },\r\n    {\r\n      \"size\": 40,\r\n      \"numberOfSize\": 50\r\n    },\r\n    {\r\n      \"size\": 41,\r\n      \"numberOfSize\": 30\r\n    },\r\n    {\r\n      \"size\": 42,\r\n      \"numberOfSize\": 20\r\n    }\r\n  ]\r\n}",
+					"raw": "{\r\n  \"productName\": \"Giày thể thao Nike Air Max\",\r\n  \"description\": \"Giày thể thao Nike Air Max cực kỳ thoải mái và phong cách, phù hợp cho mọi hoạt động thể thao.\",\r\n  \"price\": 2500000,\r\n  \"brand\": \"67642cf03b4bbab31d792a36\",  \r\n  \"quantity\": [\r\n    {\r\n      \"size\": 36,\r\n      \"numberOfSize\": 30\r\n    },\r\n\r\n    {\r\n      \"size\": 37,\r\n      \"numberOfSize\": 50\r\n    },\r\n\r\n    {\r\n      \"size\": 38,\r\n      \"numberOfSize\": 50\r\n    },\r\n    {\r\n      \"size\": 39,\r\n      \"numberOfSize\": 50\r\n    },\r\n    {\r\n      \"size\": 40,\r\n      \"numberOfSize\": 50\r\n    },\r\n    {\r\n      \"size\": 41,\r\n      \"numberOfSize\": 30\r\n    },\r\n    {\r\n      \"size\": 42,\r\n      \"numberOfSize\": 20\r\n    }\r\n  ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
